@@ -73,16 +73,6 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
