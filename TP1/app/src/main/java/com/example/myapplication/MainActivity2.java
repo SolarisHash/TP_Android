@@ -22,6 +22,7 @@ public class MainActivity2 extends AppCompatActivity {
     Button b1, b2, b3, b4;
     TextView textView;
     RequestQueue queue;
+    boolean change;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,30 +36,39 @@ public class MainActivity2 extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.text);
 
+        change = true;
+
 
         queue = Volley.newRequestQueue(this);
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String url = "https://google.com/";
+                String url = "https://www.reverso.net/orthographe/correcteur-francais/";
                 // Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
-                                textView.setText("Response is: " + response.substring(0, 500));
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        textView.setText("That didn't work!");
-                    }
-                });
-// Add the request to the RequestQueue.
-                queue.add(stringRequest);
-            }
+                if(change == true)
+                {
+                    textView.setBackgroundColor(Color.WHITE);
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    // Display the first 500 characters of the response string.
+                                    textView.setText("Response is: " + response.substring(0, 500));
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            textView.setText("That didn't work!");
+                        }
+                    });
+                    // Add the request to the RequestQueue.
+                    queue.add(stringRequest);
+                }
+                }
+
         });
 
 
